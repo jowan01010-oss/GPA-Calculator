@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GPA Calculator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <main class="calculator">
+
+        <h1>GPA Calculator</h1>
+
+        <div class="courses">
+
+            <div class="course">
+                <h2>Course 1</h2>
+
+                <div class="inputs">
+                    <label>
+                        Grade
+                        <input id="g1" type="number">
+                    </label>
+
+                    <label>
+                        Hours
+                        <input id="h1" type="number">
+                    </label>
+                </div>
+            </div>
+
+            <div class="course">
+                <h2>Course 2</h2>
+
+                <div class="inputs">
+                    <label>
+                        Grade
+                        <input id="g2" type="number">
+                    </label>
+
+                    <label>
+                        Hours
+                        <input id="h2" type="number">
+                    </label>
+                </div>
+            </div>
+
+            <div class="course">
+                <h2>Course 3</h2>
+
+                <div class="inputs">
+                    <label>
+                        Grade
+                        <input id="g3" type="number">
+                    </label>
+
+                    <label>
+                        Hours
+                        <input id="h3" type="number">
+                    </label>
+                </div>
+            </div>
+
+            <div class="course">
+                <h2>Course 4</h2>
+
+                <div class="inputs">
+                    <label>
+                        Grade
+                        <input id="g4" type="number">
+                    </label>
+
+                    <label>
+                        Hours
+                        <input id="h4" type="number">
+                    </label>
+                </div>
+            </div>
+
+        </div>
+
+        <button onclick="calculateAverage()">Calculate your GPA</button>
+
+        <p id="result"></p>
+
+    </main>
+
+    <script>
+        function calculateAverage() {
+
+            const grades = [
+                Number(document.getElementById("g1").value),
+                Number(document.getElementById("g2").value),
+                Number(document.getElementById("g3").value),
+                Number(document.getElementById("g4").value)
+            ];
+
+            const hours = [
+                Number(document.getElementById("h1").value),
+                Number(document.getElementById("h2").value),
+                Number(document.getElementById("h3").value),
+                Number(document.getElementById("h4").value)
+            ];
+
+            fetch("http://localhost:8080/api/calculate", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    totalGrade: grades,
+                    hours: hours
+                })
+            })
+            .then(res => res.json())
+            .then(data => {
+                document.getElementById("result").innerText =
+                    "Your average is: " + data;
+            });
+        }
+    </script>
+
+</body>
+
+</html>

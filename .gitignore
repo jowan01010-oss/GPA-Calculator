@@ -1,0 +1,15 @@
+# Java / Maven
+backend/target/
+backend/.idea/
+backend/.vscode/
+
+# NetBeans
+backend/nbproject/private/
+backend/build/
+backend/dist/
+backend/nbbuild/
+backend/nbdist/
+
+# OS
+.DS_Store
+Thumbs.db
